@@ -134,91 +134,18 @@ Gets the `((start_row, start_col), (end_row, end_col))` of the visual selection.
 
 # Variables
 
-### let(name, value, namespace=None, scope=NS_GLOBAL)
-
-Sets a variable.  You typically only need the `name` and `value`.  You can use
-different scopes for the variable, like `NS_GLOBAL` ("g") or buffer-local scope.
-`namespace` follows the convention of many Vim plugins by prefixing a Vim
-variable name with the plugin name.  So something like:
-
-```python
-let("switch_buffer", "0", namespace="ctrlp")
-```
-
-Seems not super useful now, but it comes in handy with `multi_let`, where you
-can define many plugin variables at once.
-
-### get(name, namespace=None, scope=NS_GLOBAL)
-
-Gets a variable's value.
-
-### multi_let(namespace, **name_values)
-
-Let's you batch-define a bunch of variables related to some namespace.  It's
-essentially a sequence of `let`s, where the namespace of all of them is the
-same.  For example, in my `.vimrc.py`:
-
-```python
-multi_let(
-    "ctrlp",
-    match_window="bottom,order:tbb",
-    switch_buffer=0, 
-    user_command='ag %s -l --nocolor -U --hidden -g ""',
-    working_path_mode="r",
-    map="<c-p>",
-    cmd="CtrlPBuffer",
-)
-```
-
-This sets all of my `ctrlp` settings in one go.
+* get(name, namespace=None, scope=NS_GLOBAL)
+* let(name, value, namespace=None, scope=NS_GLOBAL)
+* multi_let(namespace, **name_values)
 
 # Options
 
-### set_option(name, value=None)
-
-Sets a Vim option, like:
-
-```python
-set_option("expandtab")
-set_option("textwidth", 80)
-```
-
-### get_option(name)
-
-Gets an option's value.
-
-### toggle_option(name)
-
-Toggles an option on and off.
-
-### multi_set_option(\*names)
-
-A convenience function for batch setting options in your `.vimrc.py`:
-
-```python
-multi_set_option(
-    "nocompatible",
-    "exrc",
-    "secure",
-
-    ("background", "dark"),
-    ("textwidth", 80),
-
-    ("shiftwidth", tab),
-    ("softtabstop", tab),
-    ("tabstop", tab),
-    "expandtab",
-
-    "incsearch",
-    "hlsearch",
-)
-```
-
-### set_option_default(name)
-### unset_option(name)
-### set_local_option(name, value=None)
-
-Sets a buffer-local option.
+* toggle_option(name)
+* set_option(name, value=None)
+* multi_set_option(*names)
+* set_option_default(name)
+* unset_option(name)
+* set_local_option(name, value=None)
 
 # Registers
 

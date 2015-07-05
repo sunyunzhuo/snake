@@ -1,0 +1,105 @@
+[1mdiff --git a/docs/api_reference.md b/docs/api_reference.md[m
+[1mindex 5f2a30d..cbaa2e9 100644[m
+[1m--- a/docs/api_reference.md[m
+[1m+++ b/docs/api_reference.md[m
+[36m@@ -134,91 +134,18 @@[m [mGets the `((start_row, start_col), (end_row, end_col))` of the visual selection.[m
+ [m
+ # Variables[m
+ [m
+[31m-### let(name, value, namespace=None, scope=NS_GLOBAL)[m
+[31m-[m
+[31m-Sets a variable.  You typically only need the `name` and `value`.  You can use[m
+[31m-different scopes for the variable, like `NS_GLOBAL` ("g") or buffer-local scope.[m
+[31m-`namespace` follows the convention of many Vim plugins by prefixing a Vim[m
+[31m-variable name with the plugin name.  So something like:[m
+[31m-[m
+[31m-```python[m
+[31m-let("switch_buffer", "0", namespace="ctrlp")[m
+[31m-```[m
+[31m-[m
+[31m-Seems not super useful now, but it comes in handy with `multi_let`, where you[m
+[31m-can define many plugin variables at once.[m
+[31m-[m
+[31m-### get(name, namespace=None, scope=NS_GLOBAL)[m
+[31m-[m
+[31m-Gets a variable's value.[m
+[31m-[m
+[31m-### multi_let(namespace, **name_values)[m
+[31m-[m
+[31m-Let's you batch-define a bunch of variables related to some namespace.  It's[m
+[31m-essentially a sequence of `let`s, where the namespace of all of them is the[m
+[31m-same.  For example, in my `.vimrc.py`:[m
+[31m-[m
+[31m-```python[m
+[31m-multi_let([m
+[31m-    "ctrlp",[m
+[31m-    match_window="bottom,order:tbb",[m
+[31m-    switch_buffer=0, [m
+[31m-    user_command='ag %s -l --nocolor -U --hidden -g ""',[m
+[31m-    working_path_mode="r",[m
+[31m-    map="<c-p>",[m
+[31m-    cmd="CtrlPBuffer",[m
+[31m-)[m
+[31m-```[m
+[31m-[m
+[31m-This sets all of my `ctrlp` settings in one go.[m
+[32m+[m[32m* get(name, namespace=None, scope=NS_GLOBAL)[m
+[32m+[m[32m* let(name, value, namespace=None, scope=NS_GLOBAL)[m
+[32m+[m[32m* multi_let(namespace, **name_values)[m
+ [m
+ # Options[m
+ [m
+[31m-### set_option(name, value=None)[m
+[31m-[m
+[31m-Sets a Vim option, like:[m
+[31m-[m
+[31m-```python[m
+[31m-set_option("expandtab")[m
+[31m-set_option("textwidth", 80)[m
+[31m-```[m
+[31m-[m
+[31m-### get_option(name)[m
+[31m-[m
+[31m-Gets an option's value.[m
+[31m-[m
+[31m-### toggle_option(name)[m
+[31m-[m
+[31m-Toggles an option on and off.[m
+[31m-[m
+[31m-### multi_set_option(\*names)[m
+[31m-[m
+[31m-A convenience function for batch setting options in your `.vimrc.py`:[m
+[31m-[m
+[31m-```python[m
+[31m-multi_set_option([m
+[31m-    "nocompatible",[m
+[31m-    "exrc",[m
+[31m-    "secure",[m
+[31m-[m
+[31m-    ("background", "dark"),[m
+[31m-    ("textwidth", 80),[m
+[31m-[m
+[31m-    ("shiftwidth", tab),[m
+[31m-    ("softtabstop", tab),[m
+[31m-    ("tabstop", tab),[m
+[31m-    "expandtab",[m
+[31m-[m
+[31m-    "incsearch",[m
+[31m-    "hlsearch",[m
+[31m-)[m
+[31m-```[m
+[31m-[m
+[31m-### set_option_default(name)[m
+[31m-### unset_option(name)[m
+[31m-### set_local_option(name, value=None)[m
+[31m-[m
+[31m-Sets a buffer-local option.[m
+[32m+[m[32m* toggle_option(name)[m
+[32m+[m[32m* set_option(name, value=None)[m
+[32m+[m[32m* multi_set_option(*names)[m
+[32m+[m[32m* set_option_default(name)[m
+[32m+[m[32m* unset_option(name)[m
+[32m+[m[32m* set_local_option(name, value=None)[m
+ [m
+ # Registers[m
+ [m
